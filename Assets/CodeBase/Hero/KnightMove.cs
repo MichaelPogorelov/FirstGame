@@ -1,9 +1,10 @@
-﻿using CodeBase.Infrastructure;
+﻿using CodeBase.Infrastructure.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
 
 namespace CodeBase.Hero
 {
+    [RequireComponent(typeof(CharacterController))]
     public class KnightMove : MonoBehaviour
     {
         public CharacterController CharacterController;
@@ -12,7 +13,7 @@ namespace CodeBase.Hero
 
         private void Awake()
         {
-            _inputService = Game.InputService;
+            _inputService = AllServices.Container.Single<IInputService>();
         }
         
         private void Update()

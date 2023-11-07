@@ -13,11 +13,12 @@ namespace CodeBase.Infrastructure.States
 		private readonly LoadingCurtain _curtaine;
 		private readonly IGameFactory _factory;
 
-		public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtaine)
+		public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtaine, IGameFactory factory)
 		{
 			_stateMachine = stateMachine;
 			_sceneLoader = sceneLoader;
 			_curtaine = curtaine;
+			_factory = factory;
 		}
 
 		public void Enter(string sceneName)
