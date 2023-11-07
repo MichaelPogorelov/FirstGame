@@ -1,23 +1,24 @@
 using CodeBase.CameraLogic;
+using CodeBase.Infrastructure.Factory;
 using CodeBase.Logic;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.States
 {
 	public class LoadLevelState : IPayloadedState<string>
 	{
 		private const string InitialPointTag = "InitialPoint";
-		private const string KnightPath = "Hero/hero";
-		private const string HudPath = "Hud/hud";
 		private readonly GameStateMachine _stateMachine;
 		private readonly SceneLoader _sceneLoader;
 		private readonly LoadingCurtain _curtaine;
+		private readonly IGameFactory _factory;
 
-		public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtaine)
+		public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingCurtain curtaine, IGameFactory factory)
 		{
 			_stateMachine = stateMachine;
 			_sceneLoader = sceneLoader;
 			_curtaine = curtaine;
+			_factory = factory;
 		}
 
 		public void Enter(string sceneName)
@@ -33,30 +34,18 @@ namespace CodeBase.Infrastructure
 
 		private void OnLoaded()
 		{
-			var initialPoint = GameObject.FindWithTag(InitialPointTag);
-			
-			GameObject knight = Instantiate(KnightPath, initialPoint.transform.position);
-			Instantiate(HudPath);
+			GameObject knight = _factory.CreateKnight(GameObject.FindWithTag(InitialPointTag));
+
+			_factory.CreateHud();
 			
 			CameraFollow(knight);
 			
 			_stateMachine.Enter<GameLoopState>();
 		}
+
 		private static void CameraFollow(GameObject target)
 		{
 			Camera.main.GetComponent<CameraFollow>().Follow(target);
-		}
-
-		private static GameObject Instantiate(string path)
-		{
-			var prefab = Resources.Load<GameObject>(path);
-			return Object.Instantiate(prefab);
-		}
-		
-		private static GameObject Instantiate(string path, Vector3 at)
-		{
-			var prefab = Resources.Load<GameObject>(path);
-			return Object.Instantiate(prefab, at, Quaternion.identity);
 		}
 	}
 }
