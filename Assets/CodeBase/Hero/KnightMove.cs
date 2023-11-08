@@ -45,7 +45,7 @@ namespace CodeBase.Hero
                 if (savedPosition != null)
                 {
                     CharacterController.enabled = false;
-                    transform.position = savedPosition.AsUnityVector();
+                    transform.position = savedPosition.AsUnityVector().AddY(CharacterController.height);
                     CharacterController.enabled = true;
                 }
             }

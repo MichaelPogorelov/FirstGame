@@ -23,5 +23,11 @@ namespace CodeBase.Data
 		{
 			return JsonUtility.FromJson<T>(json);
 		}
+
+		public static Vector3 AddY(this Vector3 vector, float y)
+		{
+			vector.y += y;
+			return vector;
+		}
 	}
 }
