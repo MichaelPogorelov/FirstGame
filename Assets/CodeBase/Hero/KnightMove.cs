@@ -1,11 +1,14 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Data;
+using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Services.Input;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CodeBase.Hero
 {
     [RequireComponent(typeof(CharacterController))]
-    public class KnightMove : MonoBehaviour
+    public class KnightMove : MonoBehaviour, ISaveProgress
     {
         public CharacterController CharacterController;
         public float MovementSpeed;
@@ -32,6 +35,30 @@ namespace CodeBase.Hero
             movementVector += Physics.gravity;
             
             CharacterController.Move(movementVector * MovementSpeed * Time.deltaTime);
+        }
+
+        public void LoadProgress(PlayerProgress progress)
+        {
+            if (CurrentLevel() == progress.WorldData.PositionOnLevel.Level)
+            {
+                Vector3Data savedPosition = progress.WorldData.PositionOnLevel.Position;
+                if (savedPosition != null)
+                {
+                    CharacterController.enabled = false;
+                    transform.position = savedPosition.AsUnityVector();
+                    CharacterController.enabled = true;
+                }
+            }
+        }
+
+        public void UpdateProgress(PlayerProgress progress)
+        {
+            progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.AsVectorData());
+        }
+
+        private static string CurrentLevel()
+        {
+            return SceneManager.GetActiveScene().name;
         }
     }
 }
