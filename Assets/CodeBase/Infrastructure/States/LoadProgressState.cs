@@ -34,7 +34,10 @@ namespace CodeBase.Infrastructure.States
 
 		private PlayerProgress NewProgress()
 		{
-			return new PlayerProgress("Main");
+			PlayerProgress playerProgress = new PlayerProgress("Main");
+			playerProgress.PlayerHealth.MaxHP = 50f;
+			playerProgress.PlayerHealth.ResetHP();
+			return playerProgress;
 		}
 	}
 }
