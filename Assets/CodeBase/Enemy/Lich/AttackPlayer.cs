@@ -1,4 +1,5 @@
 using System.Linq;
+using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace CodeBase.Enemy.Lich
 		public float AttackCooldown = 1f;
 		public float HitRadius = 0.5f;
 		public float ForwardDistanceCoef = 0.5f;
+		public float Damage = 10f;
 
 		private IGameFactory _gameFactory;
 		private Transform _playerTransform;
@@ -42,7 +44,7 @@ namespace CodeBase.Enemy.Lich
 		{
 			if (Hit(out Collider hit))
 			{
-				Debug.Log("HitPlayer");
+				hit.transform.GetComponent<KnightHealth>().TakeDamage(Damage);
 			}
 		}
 
