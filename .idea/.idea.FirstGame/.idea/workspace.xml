@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81f7b2bc-9368-4871-afa9-8abe74529497" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Follow.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Follow.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/RotateToPlayer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/RotateToPlayer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/AttackPlayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/AttackPlayer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/AttackZone.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/AttackZone.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FirstGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FirstGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/AggroZoneMove.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/AggroZoneMove.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/MoveToPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/CodeBase/Enemy/Lich/MoveToPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemies/Lich/Animations/Lich/Attack01.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemies/Lich/Animations/Lich/Attack01.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemies/Lich/Animations/Lich/Attack02.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemies/Lich/Animations/Lich/Attack02.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemies/Lich/Prefabs/FreeLichPBR.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemies/Lich/Prefabs/FreeLichPBR.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
