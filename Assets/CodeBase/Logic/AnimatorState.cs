@@ -4,8 +4,11 @@ namespace CodeBase.Logic
   {
     Unknown,
     Idle,
-    Attack,
+    Attack1,
+    Attack2,
+    Hit,
     Walking,
     Died,
+    Win,
   }
 }

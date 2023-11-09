@@ -30,7 +30,7 @@ namespace CodeBase.Hero
       Animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
     }
 
-    public bool IsAttacking => State == AnimatorState.Attack;
+    public bool IsAttacking => State == AnimatorState.Attack1;
     
 
     public void PlayHit() => Animator.SetTrigger(HitHash);
@@ -56,7 +56,7 @@ namespace CodeBase.Hero
       if (stateHash == _idleStateHash)
         state = AnimatorState.Idle;
       else if (stateHash == _attackStateHash)
-        state = AnimatorState.Attack;
+        state = AnimatorState.Attack1;
       else if (stateHash == _walkingStateHash)
         state = AnimatorState.Walking;
       else if (stateHash == _deathStateHash)

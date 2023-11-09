@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services.PersistentProgress;
@@ -9,8 +10,12 @@ namespace CodeBase.Infrastructure.Factory
 	{
 		public List<ISaveProgressReader> ProgressReaders { get; } = new List<ISaveProgressReader>();
 		public List<ISaveProgress> ProgressWriters { get; } = new List<ISaveProgress>();
+
+		public event Action KnightCreated;
+		public GameObject KnightGameObject { get; private set; }
 		
 		private readonly IAssetProvider _assets;
+
 
 		public GameFactory(IAssetProvider assets)
 		{
@@ -19,7 +24,9 @@ namespace CodeBase.Infrastructure.Factory
 
 		public GameObject CreateKnight(GameObject at)
 		{
-			return InstantiateRegister(AssetPath.KnightPath, at.transform.position);
+			KnightGameObject = InstantiateRegister(AssetPath.KnightPath, at.transform.position);
+			KnightCreated?.Invoke();
+			return KnightGameObject;
 		}
 
 		public void CreateHud()
