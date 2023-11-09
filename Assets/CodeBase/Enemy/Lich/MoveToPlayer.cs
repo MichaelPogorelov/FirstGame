@@ -5,7 +5,8 @@ using UnityEngine.AI;
 
 namespace CodeBase.Enemy.Lich
 {
-	public class MoveToPlayer : MonoBehaviour
+	[RequireComponent(typeof(NavMeshAgent))]
+	public class MoveToPlayer : Follow
 	{
 		public NavMeshAgent Agent;
 
