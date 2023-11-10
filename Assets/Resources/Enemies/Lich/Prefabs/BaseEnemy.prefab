@@ -139,6 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerObserver: {fileID: 351674138869374191}
   MoveToPlayer: {fileID: 6043793819553845180}
+  LichDeath: {fileID: 4238516101665108915}
 --- !u!114 &8811528834776674457
 MonoBehaviour:
   m_ObjectHideFlags: 0
