@@ -29,9 +29,9 @@ namespace CodeBase.Infrastructure.Factory
 			return KnightGameObject;
 		}
 
-		public void CreateHud()
+		public GameObject CreateHud()
 		{
-			InstantiateRegister(AssetPath.HudPath);
+			return InstantiateRegister(AssetPath.HudPath);
 		}
 
 		public void Cleanup()
