@@ -1,7 +1,7 @@
 using System.Linq;
-using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services;
+using CodeBase.Logic;
 using UnityEngine;
 
 namespace CodeBase.Enemy.Lich
@@ -40,11 +40,11 @@ namespace CodeBase.Enemy.Lich
 			}
 		}
 
-		private void AnimationEventLichAttack()
+		private void AnimationEventLichAttack() // animator event
 		{
 			if (Hit(out Collider hit))
 			{
-				hit.transform.GetComponent<KnightHealth>().TakeDamage(Damage);
+				hit.transform.GetComponent<IHealth>().TakeDamage(Damage);
 			}
 		}
 
@@ -56,18 +56,18 @@ namespace CodeBase.Enemy.Lich
 			return hitsCount > 0;
 		}
 
-		private void AnimationEventLichAttack2()
+		private void AnimationEventLichAttack2() // animator event
 		{
 			
 		}
 
-		private void AnimationEventLichFinishAttack()
+		private void AnimationEventLichFinishAttack() // animator event
 		{
 			_attackCooldown = AttackCooldown;
 			_isAttacking = false;
 		}
 
-		private void AnimationEventLichFinishAttack2()
+		private void AnimationEventLichFinishAttack2() // animator event
 		{
 			
 		}

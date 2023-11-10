@@ -1,16 +1,17 @@
 using System;
 using CodeBase.Data;
 using CodeBase.Infrastructure.Services.PersistentProgress;
+using CodeBase.Logic;
 using UnityEngine;
 
 namespace CodeBase.Hero
 {
 	[RequireComponent(typeof(KnightAnimator))]
-	public class KnightHealth : MonoBehaviour, ISaveProgress
+	public class KnightHealth : MonoBehaviour, ISaveProgress, IHealth
 	{
 		public KnightAnimator Animator;
-		public event Action HealthChange;
-		
+		public event Action HealthChanged;
+
 		private PlayerHealthData _playerHealth;
 
 		public float CurrentHP { get => _playerHealth.CurrentHP;
@@ -19,22 +20,23 @@ namespace CodeBase.Hero
 				if (_playerHealth.CurrentHP != value)
 				{
 					_playerHealth.CurrentHP = value;
-					HealthChange?.Invoke();	
+					HealthChanged?.Invoke();	
 				}
 			}
 		}
-		public float CurrentMaxHP { get => _playerHealth.MaxHP; set => _playerHealth.MaxHP = value; }
+		public float MaxHP { get => _playerHealth.MaxHP; set => _playerHealth.MaxHP = value; }
+		
 		
 		public void LoadProgress(PlayerProgress progress)
 		{
 			_playerHealth = progress.PlayerHealth;
-			HealthChange?.Invoke();
+			HealthChanged?.Invoke();
 		}
 
 		public void UpdateProgress(PlayerProgress progress)
 		{
 			progress.PlayerHealth.CurrentHP = CurrentHP;
-			progress.PlayerHealth.MaxHP = CurrentMaxHP;
+			progress.PlayerHealth.MaxHP = MaxHP;
 		}
 
 		public void TakeDamage(float damage)

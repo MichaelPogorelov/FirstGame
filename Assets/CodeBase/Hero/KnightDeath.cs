@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace CodeBase.Hero
@@ -8,6 +7,7 @@ namespace CodeBase.Hero
 	{
 		public KnightHealth KnightHealth;
 		public KnightMove KnightMove;
+		public KnightAttack KnightAttack;
 		public KnightAnimator KnightAnimator;
 		
 		public GameObject DeathFX;
@@ -15,12 +15,12 @@ namespace CodeBase.Hero
 
 		private void Start()
 		{
-			KnightHealth.HealthChange += HealthChange;
+			KnightHealth.HealthChanged += HealthChange;
 		}
 
 		private void OnDestroy()
 		{
-			KnightHealth.HealthChange -= HealthChange;
+			KnightHealth.HealthChanged -= HealthChange;
 		}
 
 		private void HealthChange()
@@ -35,6 +35,7 @@ namespace CodeBase.Hero
 		{
 			_isDeath = true;
 			KnightMove.enabled = false;
+			KnightAttack.enabled = false;
 			KnightAnimator.PlayDeath();
 
 			Instantiate(DeathFX, transform.position, Quaternion.identity);
