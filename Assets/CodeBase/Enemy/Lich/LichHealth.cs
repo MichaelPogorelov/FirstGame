@@ -1,5 +1,6 @@
 using System;
 using CodeBase.Logic;
+using CodeBase.UI;
 using UnityEngine;
 
 namespace CodeBase.Enemy.Lich
@@ -8,10 +9,16 @@ namespace CodeBase.Enemy.Lich
 	public class LichHealth : MonoBehaviour, IHealth
 	{
 		public LichAnimator LichAnimator;
+		public ActorUI ActorUI;
 		[SerializeField] private float _currentHP;
 		[SerializeField] private float _maxHP;
 
 		public event Action HealthChanged;
+
+		private void Awake()
+		{
+			ActorUI.Constructor(this);
+		}
 
 		public float CurrentHP
 		{

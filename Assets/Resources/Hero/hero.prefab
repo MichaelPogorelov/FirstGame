@@ -1282,6 +1282,7 @@ GameObject:
   - component: {fileID: 5804435440743987529}
   - component: {fileID: 8797345721237197659}
   - component: {fileID: 5500228802272608681}
+  - component: {fileID: 9107278884923810481}
   m_Layer: 12
   m_Name: hero
   m_TagString: Player
@@ -1429,8 +1430,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   KnightHealth: {fileID: 8797345721237197659}
   KnightMove: {fileID: 7292136629157201086}
+  KnightAttack: {fileID: 9107278884923810481}
   KnightAnimator: {fileID: 1941000699}
   DeathFX: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
+--- !u!114 &9107278884923810481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b160012e5f847c695ec31e0387ef337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  KnightAnimator: {fileID: 1941000699}
+  CharacterController: {fileID: 4830094056451997332}
 --- !u!1 &178646
 GameObject:
   m_ObjectHideFlags: 0
