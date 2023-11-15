@@ -12,7 +12,7 @@ namespace CodeBase.Logic
 		public EnemyType EnemyType;
 
 		private string _id;
-		public bool _isDeath;
+		private bool _isDeath;
 		private IGameFactory _gameFactory;
 		private LichDeath _lichDeath;
 

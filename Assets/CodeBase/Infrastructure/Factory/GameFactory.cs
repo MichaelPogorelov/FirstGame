@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CodeBase.Enemy.Lich;
 using CodeBase.Infrastructure.AssetManagement;
