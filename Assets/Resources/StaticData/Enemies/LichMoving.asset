@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: LichMoving
   m_EditorClassIdentifier: 
   EnemyType: 0
-  HP: 100
+  HP: 50
   Damage: 20
   AttackCooldown: 1.6
   HitRadius: 0.5
   ForwardDistanceCoef: 0.5
+  MoveSpeed: 3
   Prefab: {fileID: 5238962767695915663, guid: 29ea02d69aded45869048c145a30df70, type: 3}

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22ede5ba4044f07b08b77b22d88caa4, type: 3}
   m_Name: GolemMoving
   m_EditorClassIdentifier: 
-  EnemyType: 0
-  HP: 0
-  Damage: 0
+  EnemyType: 1
+  HP: 100
+  Damage: 40
   AttackCooldown: 1
-  HitRadius: 0.5
-  ForwardDistanceCoef: 0.5
-  MoveSpeed: 3
+  HitRadius: 0.8
+  ForwardDistanceCoef: 0.8
+  MoveSpeed: 1
   Prefab: {fileID: 0}
