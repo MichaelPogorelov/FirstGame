@@ -1,5 +1,4 @@
 using CodeBase.Infrastructure.Factory;
-using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -14,30 +13,17 @@ namespace CodeBase.Enemy.Lich
 		private Transform _playerTransform;
 		private IGameFactory _gameFactory;
 
-		private void Start()
+		public void Constructor(Transform knightTransform)
 		{
-			_gameFactory = AllServices.Container.Single<IGameFactory>();
-			if (_gameFactory.KnightGameObject != null)
-			{
-				SetPlayerTransform();
-			}
-			else
-			{
-				_gameFactory.KnightCreated += SetPlayerTransform;
-			}
+			_playerTransform = knightTransform;
 		}
-
+		
 		private void Update()
 		{
 			if (_playerTransform != null && PlayerNotReached())
 			{
 				Agent.destination = _playerTransform.position;
 			}
-		}
-
-		private void SetPlayerTransform()
-		{
-			_playerTransform = _gameFactory.KnightGameObject.transform;
 		}
 
 		private bool PlayerNotReached()

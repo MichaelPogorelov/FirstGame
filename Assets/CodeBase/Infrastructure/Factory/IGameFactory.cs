@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
+using CodeBase.Logic;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Factory
@@ -11,11 +12,10 @@ namespace CodeBase.Infrastructure.Factory
 		List<ISaveProgressReader> ProgressReaders { get; }
 		List<ISaveProgress> ProgressWriters { get; }
 		GameObject CreateKnight(GameObject at);
-		event Action KnightCreated;
-		GameObject KnightGameObject { get; }
 		GameObject CreateHud();
 		void Cleanup();
 
 		void Register(ISaveProgressReader progress);
+		GameObject CreateEnemy(EnemyType type, Transform transform);
 	}
 }

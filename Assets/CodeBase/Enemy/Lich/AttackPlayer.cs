@@ -1,6 +1,5 @@
 using System.Linq;
 using CodeBase.Infrastructure.Factory;
-using CodeBase.Infrastructure.Services;
 using CodeBase.Logic;
 using UnityEngine;
 
@@ -23,10 +22,13 @@ namespace CodeBase.Enemy.Lich
 		private Collider[] _hits = new Collider[1];
 		private bool _attackIsActive;
 
+		public void Constructor(Transform playerTransform)
+		{
+			_playerTransform = playerTransform;
+		}
+
 		private void Awake()
 		{
-			_gameFactory = AllServices.Container.Single<IGameFactory>();
-			_gameFactory.KnightCreated += OnPlayerCreated;
 			_layerMask = 1 << LayerMask.NameToLayer("Player");
 		}
 
@@ -87,11 +89,6 @@ namespace CodeBase.Enemy.Lich
 			transform.LookAt(_playerTransform);
 			LichAnimator.PlayAttack1();
 			_isAttacking = true;
-		}
-
-		private void OnPlayerCreated()
-		{
-			_playerTransform = _gameFactory.KnightGameObject.transform;
 		}
 
 		private void UpdateCooldown()

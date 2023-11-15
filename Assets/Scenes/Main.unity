@@ -205,6 +205,11 @@ PrefabInstance:
       propertyPath: _isDeath
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3339051416991405441, guid: 8160cb2562c77459e9ed52f5791bd9dc,
+        type: 3}
+      propertyPath: EnemyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3578253295678514325, guid: 8160cb2562c77459e9ed52f5791bd9dc,
         type: 3}
       propertyPath: m_Name
