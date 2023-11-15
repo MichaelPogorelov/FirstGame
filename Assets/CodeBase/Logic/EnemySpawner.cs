@@ -1,4 +1,7 @@
 using CodeBase.Data;
+using CodeBase.Enemy.Lich;
+using CodeBase.Infrastructure.Factory;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
@@ -10,10 +13,13 @@ namespace CodeBase.Logic
 
 		private string _id;
 		public bool _isDeath;
+		private IGameFactory _gameFactory;
+		private LichDeath _lichDeath;
 
 		private void Awake()
 		{
 			_id = GetComponent<UniqueId>().Id;
+			_gameFactory = AllServices.Container.Single<IGameFactory>();
 		}
 
 		public void LoadProgress(PlayerProgress progress)
@@ -38,6 +44,18 @@ namespace CodeBase.Logic
 
 		private void Spawn()
 		{
+			GameObject enemy = _gameFactory.CreateEnemy(EnemyType, transform);
+			_lichDeath = enemy.GetComponent<LichDeath>();
+			_lichDeath.DeathHappend += Slay;
+		}
+
+		private void Slay()
+		{
+			_isDeath = true;
+			if (_lichDeath != null)
+			{
+				_lichDeath.DeathHappend -= Slay;
+			}
 		}
 	}
 }

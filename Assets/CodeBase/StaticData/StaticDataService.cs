@@ -12,8 +12,7 @@ namespace CodeBase.StaticData
 
 		public void LoadEnemy()
 		{
-			_enemies = Resources.LoadAll<EnemyStaticData>("StaticData").ToDictionary(x => x.EnemyType, x => x);
-			Debug.Log(_enemies.Count);
+			_enemies = Resources.LoadAll<EnemyStaticData>("StaticData/Enemies").ToDictionary(x => x.EnemyType, x => x);
 		}
 
 		public EnemyStaticData ForEnemy(EnemyType type)
