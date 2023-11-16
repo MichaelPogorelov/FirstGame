@@ -21,13 +21,15 @@ namespace CodeBase.Infrastructure.Factory
 		private readonly IAssetProvider _assets;
 		private readonly IStaticDataService _staticData;
 		private readonly IRandomService _randomService;
+		private readonly IPersistentProgressService _progressService;
 		private GameObject _knightGameObject;
 
-		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService)
+		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService progressService)
 		{
 			_assets = assets;
 			_staticData = staticData;
 			_randomService = randomService;
+			_progressService = progressService;
 		}
 
 		public GameObject CreateKnight(GameObject at)
@@ -38,7 +40,10 @@ namespace CodeBase.Infrastructure.Factory
 
 		public GameObject CreateHud()
 		{
-			return InstantiateRegister(AssetPath.HudPath);
+			GameObject hud = InstantiateRegister(AssetPath.HudPath);
+			hud.GetComponentInChildren<LootCounter>().Constructor(_progressService.Progress.WorldData);
+			
+			return hud;
 		}
 
 		public GameObject CreateEnemy(EnemyType type, Transform parent)
@@ -69,9 +74,12 @@ namespace CodeBase.Infrastructure.Factory
 			return enemy;
 		}
 
-		public GameObject CreateLoot()
+		public LootPiece CreateLoot()
 		{
-			return InstantiateRegister(AssetPath.LootPath);
+			LootPiece lootPiece = InstantiateRegister(AssetPath.LootPath).GetComponent<LootPiece>();
+			lootPiece.Constructor(_progressService.Progress.WorldData);
+
+			return lootPiece;
 		}
 
 		public void Cleanup()

@@ -31,12 +31,14 @@ namespace CodeBase.Loot
 
 		private void SpawnLoot()
 		{
-			GameObject loot = _gameFactory.CreateLoot();
+			LootPiece loot = _gameFactory.CreateLoot();
 			loot.transform.position = transform.position;
 			var lootItem = new LootData()
 			{
 				Value = _random.Next(_lootMin, _lootMax)
 			};
+			
+			loot.Initialize(lootItem);
 		}
 	}
 }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
+using CodeBase.Loot;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.Factory
@@ -16,6 +17,6 @@ namespace CodeBase.Infrastructure.Factory
 
 		void Register(ISaveProgressReader progress);
 		GameObject CreateEnemy(EnemyType type, Transform transform);
-		GameObject CreateLoot();
+		LootPiece CreateLoot();
 	}
 }
