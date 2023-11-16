@@ -20,12 +20,14 @@ namespace CodeBase.Infrastructure.Factory
 
 		private readonly IAssetProvider _assets;
 		private readonly IStaticDataService _staticData;
+		private readonly IRandomService _randomService;
 		private GameObject _knightGameObject;
 
-		public GameFactory(IAssetProvider assets, IStaticDataService staticData)
+		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService)
 		{
 			_assets = assets;
 			_staticData = staticData;
+			_randomService = randomService;
 		}
 
 		public GameObject CreateKnight(GameObject at)
@@ -61,7 +63,8 @@ namespace CodeBase.Infrastructure.Factory
 			attack.ForwardDistanceCoef = enemyData.ForwardDistanceCoef;
 
 			LootSpawner loot = enemy.GetComponentInChildren<LootSpawner>();
-			loot.Constructor(this);
+			loot.Constructor(this, _randomService);
+			loot.SetLoot(enemyData.MinLoot, enemyData.MaxLoot);
 			
 			return enemy;
 		}
