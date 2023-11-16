@@ -16,5 +16,6 @@ namespace CodeBase.Infrastructure.Factory
 
 		void Register(ISaveProgressReader progress);
 		GameObject CreateEnemy(EnemyType type, Transform transform);
+		GameObject CreateLoot();
 	}
 }

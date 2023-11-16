@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.AssetManagement;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
+using CodeBase.Loot;
 using CodeBase.StaticData;
 using CodeBase.UI;
 using UnityEngine;
@@ -58,8 +59,16 @@ namespace CodeBase.Infrastructure.Factory
 			attack.HitRadius = enemyData.HitRadius;
 			attack.AttackCooldown = enemyData.AttackCooldown;
 			attack.ForwardDistanceCoef = enemyData.ForwardDistanceCoef;
+
+			LootSpawner loot = enemy.GetComponentInChildren<LootSpawner>();
+			loot.Constructor(this);
 			
 			return enemy;
+		}
+
+		public GameObject CreateLoot()
+		{
+			return InstantiateRegister(AssetPath.LootPath);
 		}
 
 		public void Cleanup()
