@@ -31,8 +31,7 @@ namespace CodeBase.Loot
 
 		private void SpawnLoot()
 		{
-			LootPiece loot = _gameFactory.CreateLoot();
-			loot.transform.position = transform.position;
+			LootPiece loot = _gameFactory.CreateLoot(transform.position);
 			var lootItem = new LootData()
 			{
 				Value = _random.Next(_lootMin, _lootMax)

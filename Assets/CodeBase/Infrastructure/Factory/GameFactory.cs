@@ -74,9 +74,9 @@ namespace CodeBase.Infrastructure.Factory
 			return enemy;
 		}
 
-		public LootPiece CreateLoot()
+		public LootPiece CreateLoot(Vector3 position)
 		{
-			LootPiece lootPiece = InstantiateRegister(AssetPath.LootPath).GetComponent<LootPiece>();
+			LootPiece lootPiece = InstantiateRegister(AssetPath.LootPath, position).GetComponent<LootPiece>();
 			lootPiece.Constructor(_progressService.Progress.WorldData);
 
 			return lootPiece;

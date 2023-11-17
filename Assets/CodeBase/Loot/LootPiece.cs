@@ -1,12 +1,12 @@
-using System;
 using System.Collections;
 using CodeBase.Data;
+using CodeBase.Infrastructure.Services.PersistentProgress;
 using TMPro;
 using UnityEngine;
 
 namespace CodeBase.Loot
 {
-	public class LootPiece : MonoBehaviour
+	public class LootPiece : MonoBehaviour, ISaveProgress
 	{
 		public GameObject Skull;
 		public GameObject FXPrefab;
@@ -64,6 +64,22 @@ namespace CodeBase.Loot
 		{
 			LootText.text = $"{_lootData.Value}";
 			PickupPopup.SetActive(true);
+		}
+		
+		public void UpdateProgress(PlayerProgress progress)
+		{
+			if (!_isPicked)
+			{
+				LootSavePositionData lootSavePositionData = new LootSavePositionData();
+				lootSavePositionData.LootPosition = transform.position;
+				lootSavePositionData.Value = _lootData.Value;
+				progress.LootSavePositionData.Add(lootSavePositionData);
+			}
+		}
+
+		public void LoadProgress(PlayerProgress progress)
+		{
+			
 		}
 	}
 }

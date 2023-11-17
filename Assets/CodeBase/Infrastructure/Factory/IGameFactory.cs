@@ -17,6 +17,6 @@ namespace CodeBase.Infrastructure.Factory
 
 		void Register(ISaveProgressReader progress);
 		GameObject CreateEnemy(EnemyType type, Transform transform);
-		LootPiece CreateLoot();
+		LootPiece CreateLoot(Vector3 position);
 	}
 }
