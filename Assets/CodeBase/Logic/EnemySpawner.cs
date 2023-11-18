@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CodeBase.Logic
 {
-	public class EnemySpawner : MonoBehaviour, ISaveProgress
+	public class EnemySpawner : MonoBehaviour, ISaveProgress, ILoadProgress
 	{
 		public EnemyType EnemyType;
 
@@ -34,7 +34,7 @@ namespace CodeBase.Logic
 			}
 		}
 
-		public void UpdateProgress(PlayerProgress progress)
+		public void SaveProgress(PlayerProgress progress)
 		{
 			if (_isDeath)
 			{

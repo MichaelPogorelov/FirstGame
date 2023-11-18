@@ -15,7 +15,7 @@ namespace CodeBase.Infrastructure.Factory
 {
 	public class GameFactory : IGameFactory
 	{
-		public List<ISaveProgressReader> ProgressReaders { get; } = new List<ISaveProgressReader>();
+		public List<ILoadProgress> ProgressReaders { get; } = new List<ILoadProgress>();
 		public List<ISaveProgress> ProgressWriters { get; } = new List<ISaveProgress>();
 
 		private readonly IAssetProvider _assets;
@@ -88,35 +88,43 @@ namespace CodeBase.Infrastructure.Factory
 			ProgressWriters.Clear();
 		}
 
-		public void Register(ISaveProgressReader progressReader)
-		{
-			if (progressReader is ISaveProgress progressWriters)
-			{
-				ProgressWriters.Add(progressWriters);
-			}
-			ProgressReaders.Add(progressReader);
-		}
-
 		private GameObject InstantiateRegister(string prefabPath, Vector3 at)
 		{
 			GameObject gameObject = _assets.Instantiate(prefabPath, at);
-			RegisterProgressWatchers(gameObject);
+			RegisterProgress(gameObject);
 			return gameObject;
 		}
 
 		private GameObject InstantiateRegister(string prefabPath)
 		{
 			GameObject gameObject = _assets.Instantiate(prefabPath);
-			RegisterProgressWatchers(gameObject);
+			RegisterProgress(gameObject);
 			return gameObject;
 		}
 
-		private void RegisterProgressWatchers(GameObject gameObject)
+		public void RegisterProgress(GameObject gameObject)
 		{
-			foreach (ISaveProgressReader progressReader in gameObject.GetComponentsInChildren<ISaveProgressReader>())
+			foreach (ISaveLoadProgress progress in gameObject.GetComponentsInChildren<ISaveLoadProgress>())
 			{
-				Register(progressReader);
+				if (progress is ILoadProgress loadProgress)
+				{
+					RegisterLoadProgress(loadProgress);
+				}
+				if (progress is ISaveProgress saveProgress)
+				{
+					RegisterSaveProgress(saveProgress);
+				}
 			}
+		}
+
+		private void RegisterLoadProgress(ILoadProgress progress)
+		{
+			ProgressReaders.Add(progress);
+		}
+
+		private void RegisterSaveProgress(ISaveProgress progress)
+		{
+			ProgressWriters.Add(progress);
 		}
 	}
 }

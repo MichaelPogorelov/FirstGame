@@ -8,7 +8,7 @@ using UnityEngine;
 namespace CodeBase.Hero
 {
 	[RequireComponent(typeof(KnightAnimator), typeof(CharacterController))]
-	public class KnightAttack : MonoBehaviour, ISaveProgressReader
+	public class KnightAttack : MonoBehaviour, ILoadProgress
 	{
 		public KnightAnimator KnightAnimator;
 		public CharacterController CharacterController;

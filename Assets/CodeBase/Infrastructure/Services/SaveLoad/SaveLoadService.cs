@@ -18,9 +18,11 @@ namespace CodeBase.Infrastructure.Services.SaveLoad
 		}
 		public void SaveProgress()
 		{
+			_progressService.Progress.LootSavePositionData.Clear();
+			
 			foreach (ISaveProgress progressWriter in _factory.ProgressWriters)
 			{
-				progressWriter.UpdateProgress(_progressService.Progress);
+				progressWriter.SaveProgress(_progressService.Progress);
 			}
 			
 			PlayerPrefs.SetString(ProgressKey, _progressService.Progress.ToJson());

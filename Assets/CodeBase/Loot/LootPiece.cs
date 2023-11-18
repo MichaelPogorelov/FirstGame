@@ -66,7 +66,7 @@ namespace CodeBase.Loot
 			PickupPopup.SetActive(true);
 		}
 		
-		public void UpdateProgress(PlayerProgress progress)
+		public void SaveProgress(PlayerProgress progress)
 		{
 			if (!_isPicked)
 			{
@@ -75,11 +75,6 @@ namespace CodeBase.Loot
 				lootSavePositionData.Value = _lootData.Value;
 				progress.LootSavePositionData.Add(lootSavePositionData);
 			}
-		}
-
-		public void LoadProgress(PlayerProgress progress)
-		{
-			
 		}
 	}
 }

@@ -51,7 +51,7 @@ namespace CodeBase.Infrastructure.States
 
 		private void InformProgressReaders()
 		{
-			foreach (ISaveProgressReader progressReader in _factory.ProgressReaders)
+			foreach (ILoadProgress progressReader in _factory.ProgressReaders)
 			{
 				progressReader.LoadProgress(_progressService.Progress);
 			}
@@ -74,8 +74,7 @@ namespace CodeBase.Infrastructure.States
 		{
 			foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
 			{
-				var spawner = spawnerObject.GetComponent<EnemySpawner>();
-				_factory.Register(spawner);
+				_factory.RegisterProgress(spawnerObject);
 			}
 		}
 

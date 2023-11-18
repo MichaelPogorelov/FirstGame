@@ -7,7 +7,7 @@ using UnityEngine;
 namespace CodeBase.Hero
 {
 	[RequireComponent(typeof(KnightAnimator))]
-	public class KnightHealth : MonoBehaviour, ISaveProgress, IHealth
+	public class KnightHealth : MonoBehaviour, ISaveProgress, ILoadProgress, IHealth
 	{
 		public KnightAnimator Animator;
 		public event Action HealthChanged;
@@ -33,7 +33,7 @@ namespace CodeBase.Hero
 			HealthChanged?.Invoke();
 		}
 
-		public void UpdateProgress(PlayerProgress progress)
+		public void SaveProgress(PlayerProgress progress)
 		{
 			progress.PlayerHealth.CurrentHP = CurrentHP;
 			progress.PlayerHealth.MaxHP = MaxHP;
