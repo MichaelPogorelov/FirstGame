@@ -19,4 +19,6 @@ MonoBehaviour:
   HitRadius: 0.5
   ForwardDistanceCoef: 0.5
   MoveSpeed: 3
+  MaxLoot: 5
+  MinLoot: 1
   Prefab: {fileID: 5238962767695915663, guid: 29ea02d69aded45869048c145a30df70, type: 3}
