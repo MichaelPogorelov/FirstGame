@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NavMeshAgent: {fileID: -2245072909604375608}
-  LichAnimator: {fileID: 5755089645974534684}
+  enemyAnimator: {fileID: 5755089645974534684}
 --- !u!114 &8345959795890913765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TriggerObserver: {fileID: 351674138869374191}
   MoveToPlayer: {fileID: 6043793819553845180}
-  LichDeath: {fileID: 4238516101665108915}
+  enemyDeath: {fileID: 4238516101665108915}
 --- !u!114 &8811528834776674457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86822b789fff4c1d9cab31bd7ea6f945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LichAnimator: {fileID: 5755089645974534684}
+  enemyAnimator: {fileID: 5755089645974534684}
   AttackCooldown: 3
   HitRadius: 0.5
   ForwardDistanceCoef: 0.5
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dbec2d1ccb746f09dc0f67ccd5a135e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LichAnimator: {fileID: 5755089645974534684}
+  enemyAnimator: {fileID: 5755089645974534684}
   ActorUI: {fileID: 4109588061708296748}
   _currentHP: 20
   _maxHP: 20
@@ -200,8 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be05ba3b59984d159650d9161a614969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LichHealth: {fileID: 2074748318994207599}
-  LichAnimator: {fileID: 5755089645974534684}
+  enemyHealth: {fileID: 2074748318994207599}
+  enemyAnimator: {fileID: 5755089645974534684}
   DeathFX: {fileID: 100004, guid: 7867af58a6ec48846ae807eb4022fbaa, type: 3}
 --- !u!114 &4109588061708296748
 MonoBehaviour:
@@ -333,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e805314bfa417c88baf6755b8f81f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LichDeath: {fileID: 4238516101665108915}
+  enemyDeath: {fileID: 4238516101665108915}
 --- !u!1 &2241176848440348032
 GameObject:
   m_ObjectHideFlags: 0

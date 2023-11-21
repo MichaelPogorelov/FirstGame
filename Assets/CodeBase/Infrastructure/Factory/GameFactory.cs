@@ -84,7 +84,8 @@ namespace CodeBase.Infrastructure.Factory
 
 		public void CreateSpawner(Vector3 at, string id, EnemyType type)
 		{
-			EnemySpawner spawner = InstantiateRegister(AssetPath.Spawner, at).GetComponent<EnemySpawner>();
+			SpawnPoint spawner = InstantiateRegister(AssetPath.Spawner, at).GetComponent<SpawnPoint>();
+			spawner.Constructor(this);
 			spawner.EnemyType = type;
 			spawner.Id = id;
 		}

@@ -1,25 +1,23 @@
 using CodeBase.Data;
 using CodeBase.Enemy.Lich;
 using CodeBase.Infrastructure.Factory;
-using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
 namespace CodeBase.Logic
 {
-	public class EnemySpawner : MonoBehaviour, ISaveProgress, ILoadProgress
+	public class SpawnPoint : MonoBehaviour, ISaveProgress, ILoadProgress
 	{
-		public string Id;
+		public string Id { get; set; }
 		public EnemyType EnemyType;
 
 		private bool _isDeath;
 		private IGameFactory _gameFactory;
 		private EnemyDeath _enemyDeath;
 
-		private void Awake()
+		public void Constructor(IGameFactory gameFactory)
 		{
-			Id = GetComponent<UniqueId>().Id;
-			_gameFactory = AllServices.Container.Single<IGameFactory>();
+			_gameFactory = gameFactory;
 		}
 
 		public void LoadProgress(PlayerProgress progress)
