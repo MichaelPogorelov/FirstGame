@@ -82,6 +82,14 @@ namespace CodeBase.Infrastructure.Factory
 			return lootPiece;
 		}
 
+		public void CreateSpawner(Vector3 at, string id, EnemyType type)
+		{
+			SpawnPoint spawner = InstantiateRegister(AssetPath.Spawner, at).GetComponent<SpawnPoint>();
+			spawner.Constructor(this);
+			spawner.EnemyType = type;
+			spawner.Id = id;
+		}
+
 		public void Cleanup()
 		{
 			ProgressReaders.Clear();
@@ -102,7 +110,7 @@ namespace CodeBase.Infrastructure.Factory
 			return gameObject;
 		}
 
-		public void RegisterProgress(GameObject gameObject)
+		private void RegisterProgress(GameObject gameObject)
 		{
 			foreach (ISaveLoadProgress progress in gameObject.GetComponentsInChildren<ISaveLoadProgress>())
 			{
