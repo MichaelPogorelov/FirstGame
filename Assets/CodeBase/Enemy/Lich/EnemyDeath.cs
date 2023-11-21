@@ -4,28 +4,28 @@ using UnityEngine;
 
 namespace CodeBase.Enemy.Lich
 {
-	[RequireComponent(typeof(LichHealth), typeof(LichAnimator))]
-	public class LichDeath : MonoBehaviour
+	[RequireComponent(typeof(EnemyHealth), typeof(EnemyAnimator))]
+	public class EnemyDeath : MonoBehaviour
 	{
-		public LichHealth LichHealth;
-		public LichAnimator LichAnimator;
+		public EnemyHealth enemyHealth;
+		public EnemyAnimator enemyAnimator;
 
 		public GameObject DeathFX;
 		public event Action DeathHappend;
 
 		private void Start()
 		{
-			LichHealth.HealthChanged += HealthChange;
+			enemyHealth.HealthChanged += HealthChange;
 		}
 
 		private void OnDestroy()
 		{
-			LichHealth.HealthChanged -= HealthChange;
+			enemyHealth.HealthChanged -= HealthChange;
 		}
 
 		private void HealthChange()
 		{
-			if (LichHealth.CurrentHP < 0)
+			if (enemyHealth.CurrentHP < 0)
 			{
 				Die();
 			}
@@ -33,9 +33,9 @@ namespace CodeBase.Enemy.Lich
 
 		private void Die()
 		{
-			LichHealth.HealthChanged -= HealthChange;
+			enemyHealth.HealthChanged -= HealthChange;
 			
-			LichAnimator.PlayDeath();
+			enemyAnimator.PlayDeath();
 			SpawnFX();
 			StartCoroutine(DestroyLich());
 			

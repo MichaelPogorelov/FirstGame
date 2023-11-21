@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace CodeBase.Enemy.Lich
 {
-	[RequireComponent(typeof(LichAnimator))]
+	[RequireComponent(typeof(EnemyAnimator))]
 	public class AttackPlayer : MonoBehaviour
 	{
-		public LichAnimator LichAnimator;
+		public EnemyAnimator enemyAnimator;
 		public float AttackCooldown = 1f;
 		public float HitRadius = 0.5f;
 		public float ForwardDistanceCoef = 0.5f;
@@ -87,7 +87,7 @@ namespace CodeBase.Enemy.Lich
 		private void StartAttack()
 		{
 			transform.LookAt(_playerTransform);
-			LichAnimator.PlayAttack1();
+			enemyAnimator.PlayAttack1();
 			_isAttacking = true;
 		}
 

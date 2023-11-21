@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace CodeBase.Data
 {
@@ -9,6 +10,7 @@ namespace CodeBase.Data
 		public PlayerHealthData PlayerHealth;
 		public PlayerAttackData PlayerAttack;
 		public EnemyDeathData EnemyDeath;
+		public List<LootSavePositionData> LootSavePositionData;
 
 		public PlayerProgress(string initialLevel)
 		{
@@ -16,6 +18,7 @@ namespace CodeBase.Data
 			PlayerHealth = new PlayerHealthData();
 			PlayerAttack = new PlayerAttackData();
 			EnemyDeath = new EnemyDeathData();
+			LootSavePositionData = new List<LootSavePositionData>();
 		}
 	}
 }

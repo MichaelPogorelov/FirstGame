@@ -1,8 +1,10 @@
 using CodeBase.CameraLogic;
+using CodeBase.Data;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Factory;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
+using CodeBase.Loot;
 using CodeBase.UI;
 using UnityEngine;
 
@@ -49,7 +51,7 @@ namespace CodeBase.Infrastructure.States
 
 		private void InformProgressReaders()
 		{
-			foreach (ISaveProgressReader progressReader in _factory.ProgressReaders)
+			foreach (ILoadProgress progressReader in _factory.ProgressReaders)
 			{
 				progressReader.LoadProgress(_progressService.Progress);
 			}
@@ -58,6 +60,7 @@ namespace CodeBase.Infrastructure.States
 		private void InitGameWorld()
 		{
 			InitEnemySpawners();
+			InitUnpickableLoot();
 			
 			GameObject knight = _factory.CreateKnight(GameObject.FindWithTag(InitialPointTag));
 			
@@ -71,9 +74,19 @@ namespace CodeBase.Infrastructure.States
 		{
 			foreach (GameObject spawnerObject in GameObject.FindGameObjectsWithTag(EnemySpawnerTag))
 			{
-				var spawner = spawnerObject.GetComponent<EnemySpawner>();
-				_factory.Register(spawner);
+				_factory.RegisterProgress(spawnerObject);
 			}
+		}
+
+		private void InitUnpickableLoot()
+		{
+			foreach (LootSavePositionData lootSavePosition in _progressService.Progress.LootSavePositionData)
+			{
+				LootPiece loot = _factory.CreateLoot(lootSavePosition.LootPosition);
+				LootData lootData = new LootData() { Value = lootSavePosition.Value };
+				loot.Initialize(lootData);
+			}
+			_progressService.Progress.LootSavePositionData.Clear();
 		}
 
 		private static void CameraFollow(GameObject target)

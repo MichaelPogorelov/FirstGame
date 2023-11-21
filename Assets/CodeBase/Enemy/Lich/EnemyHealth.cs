@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace CodeBase.Enemy.Lich
 {
-	[RequireComponent(typeof(LichAnimator))]
-	public class LichHealth : MonoBehaviour, IHealth
+	[RequireComponent(typeof(EnemyAnimator))]
+	public class EnemyHealth : MonoBehaviour, IHealth
 	{
-		public LichAnimator LichAnimator;
+		public EnemyAnimator enemyAnimator;
 		public ActorUI ActorUI;
 		[SerializeField] private float _currentHP;
 		[SerializeField] private float _maxHP;
@@ -35,7 +35,7 @@ namespace CodeBase.Enemy.Lich
 		public void TakeDamage(float damage)
 		{
 			CurrentHP -= damage;
-			LichAnimator.PlayHit();
+			enemyAnimator.PlayHit();
 			HealthChanged?.Invoke();
 		}
 	}

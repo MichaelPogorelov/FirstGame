@@ -18,5 +18,7 @@ MonoBehaviour:
   AttackCooldown: 1
   HitRadius: 0.8
   ForwardDistanceCoef: 0.8
-  MoveSpeed: 1
+  MoveSpeed: 2
+  MaxLoot: 10
+  MinLoot: 6
   Prefab: {fileID: 5261016488348296696, guid: fef8ee76ba818f84b81b11da6bda5ddf, type: 3}

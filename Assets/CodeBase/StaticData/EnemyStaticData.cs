@@ -14,6 +14,9 @@ namespace CodeBase.StaticData
 		[Range(0.1f, 2f)] public float ForwardDistanceCoef = 0.5f;
 		[Range(0.5f, 7f)]public float MoveSpeed = 3f;
 
+		public int MaxLoot;
+		public int MinLoot;
+
 		public GameObject Prefab;
 	}
 }

@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 namespace CodeBase.Hero
 {
     [RequireComponent(typeof(CharacterController))]
-    public class KnightMove : MonoBehaviour, ISaveProgress
+    public class KnightMove : MonoBehaviour, ISaveProgress, ILoadProgress
     {
         public CharacterController CharacterController;
         public float MovementSpeed;
@@ -51,7 +51,7 @@ namespace CodeBase.Hero
             }
         }
 
-        public void UpdateProgress(PlayerProgress progress)
+        public void SaveProgress(PlayerProgress progress)
         {
             progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.AsVectorData());
         }
