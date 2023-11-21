@@ -7,5 +7,6 @@ namespace CodeBase.Infrastructure.Services
 	{
 		void LoadEnemy();
 		EnemyStaticData ForEnemy(EnemyType type);
+		LevelStaticData ForLevel(string sceneName);
 	}
 }
