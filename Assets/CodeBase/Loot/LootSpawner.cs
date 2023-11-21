@@ -7,7 +7,7 @@ namespace CodeBase.Loot
 {
 	public class LootSpawner : MonoBehaviour
 	{
-		public LichDeath LichDeath;
+		public EnemyDeath enemyDeath;
 		private IGameFactory _gameFactory;
 		private int _lootMin;
 		private int _lootMax;
@@ -20,7 +20,7 @@ namespace CodeBase.Loot
 		}
 		private void Start()
 		{
-			LichDeath.DeathHappend += SpawnLoot;
+			enemyDeath.DeathHappend += SpawnLoot;
 		}
 
 		public void SetLoot(int min, int max)

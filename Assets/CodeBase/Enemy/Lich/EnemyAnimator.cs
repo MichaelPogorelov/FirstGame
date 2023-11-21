@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Enemy.Lich
 {
-	public class LichAnimator : MonoBehaviour, IAnimationStateReader
+	public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
 	{
 		public event Action<AnimatorState> StateEntered; 
 		public event Action<AnimatorState> StateExited;

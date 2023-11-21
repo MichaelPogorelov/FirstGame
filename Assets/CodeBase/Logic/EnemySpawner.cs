@@ -14,7 +14,7 @@ namespace CodeBase.Logic
 		private string _id;
 		private bool _isDeath;
 		private IGameFactory _gameFactory;
-		private LichDeath _lichDeath;
+		private EnemyDeath _enemyDeath;
 
 		private void Awake()
 		{
@@ -45,16 +45,16 @@ namespace CodeBase.Logic
 		private void Spawn()
 		{
 			GameObject enemy = _gameFactory.CreateEnemy(EnemyType, transform);
-			_lichDeath = enemy.GetComponent<LichDeath>();
-			_lichDeath.DeathHappend += Slay;
+			_enemyDeath = enemy.GetComponent<EnemyDeath>();
+			_enemyDeath.DeathHappend += Slay;
 		}
 
 		private void Slay()
 		{
 			_isDeath = true;
-			if (_lichDeath != null)
+			if (_enemyDeath != null)
 			{
-				_lichDeath.DeathHappend -= Slay;
+				_enemyDeath.DeathHappend -= Slay;
 			}
 		}
 	}

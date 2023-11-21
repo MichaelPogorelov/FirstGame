@@ -8,7 +8,7 @@ namespace CodeBase.Enemy.Lich
 	{
 		public TriggerObserver TriggerObserver;
 		public Follow MoveToPlayer;
-		public LichDeath LichDeath;
+		public EnemyDeath enemyDeath;
 		private float _cooldown = 3f;
 		private Coroutine _aggroCoroutine;
 		private bool _hasAggroTarget;
@@ -17,7 +17,7 @@ namespace CodeBase.Enemy.Lich
 		{
 			TriggerObserver.TriggerEnter += EnterAggroZone;
 			TriggerObserver.TriggerExit += ExitAggroZone;
-			LichDeath.DeathHappend += StopMoving;
+			enemyDeath.DeathHappend += StopMoving;
 
 			MoveToPlayer.enabled = false;
 		}
