@@ -230,7 +230,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
     spaceCount: 6
     wordCount: 7
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -638,6 +638,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8656165320717501529}
   - component: {fileID: 8656165320717501530}
+  - component: {fileID: 3767849045381728876}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -674,6 +675,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8656165320717501528}
   m_CullTransparentMesh: 0
+--- !u!114 &3767849045381728876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656165320717501528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 086554b11c4c4438afe3dd5cec9578f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CloseButton: {fileID: 4577878008757512736}
 --- !u!1 &8656165320719788519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,6 +1904,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff0d428c93f34d0988ac9eb9bf25b09, type: 3}
+--- !u!114 &4577878008757512736 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5429742862437543235, guid: 5ff0d428c93f34d0988ac9eb9bf25b09,
+    type: 3}
+  m_PrefabInstance: {fileID: 8421082139551663971}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8125770609556938539 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 295329681755756616, guid: 5ff0d428c93f34d0988ac9eb9bf25b09,
