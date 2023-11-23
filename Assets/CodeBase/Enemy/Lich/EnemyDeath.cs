@@ -34,12 +34,11 @@ namespace CodeBase.Enemy.Lich
 		private void Die()
 		{
 			enemyHealth.HealthChanged -= HealthChange;
-			
+			DeathHappend?.Invoke();
+			enemyHealth.ActorUI.HpBar.gameObject.SetActive(false);
 			enemyAnimator.PlayDeath();
 			SpawnFX();
 			StartCoroutine(DestroyLich());
-			
-			DeathHappend?.Invoke();
 		}
 
 		private void SpawnFX()

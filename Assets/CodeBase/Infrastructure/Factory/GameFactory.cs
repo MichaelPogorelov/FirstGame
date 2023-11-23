@@ -7,6 +7,7 @@ using CodeBase.Logic;
 using CodeBase.Loot;
 using CodeBase.StaticData;
 using CodeBase.UI;
+using CodeBase.UI.Services;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
@@ -22,14 +23,16 @@ namespace CodeBase.Infrastructure.Factory
 		private readonly IStaticDataService _staticData;
 		private readonly IRandomService _randomService;
 		private readonly IPersistentProgressService _progressService;
+		private readonly IWindowService _windowService;
 		private GameObject _knightGameObject;
 
-		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService progressService)
+		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService randomService, IPersistentProgressService progressService, IWindowService windowService)
 		{
 			_assets = assets;
 			_staticData = staticData;
 			_randomService = randomService;
 			_progressService = progressService;
+			_windowService = windowService;
 		}
 
 		public GameObject CreateKnight(GameObject at)
@@ -42,6 +45,10 @@ namespace CodeBase.Infrastructure.Factory
 		{
 			GameObject hud = InstantiateRegister(AssetPath.HudPath);
 			hud.GetComponentInChildren<LootCounter>().Constructor(_progressService.Progress.WorldData);
+			foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
+			{
+				openWindowButton.Constructor(_windowService);
+			}
 			
 			return hud;
 		}
