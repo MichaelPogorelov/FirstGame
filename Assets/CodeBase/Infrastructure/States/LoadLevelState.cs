@@ -16,8 +16,6 @@ namespace CodeBase.Infrastructure.States
 {
 	public class LoadLevelState : IPayloadedState<string>
 	{
-		private const string InitialPointTag = "InitialPoint";
-		private const string EnemySpawnerTag = "EnemySpawner";
 		private readonly GameStateMachine _stateMachine;
 		private readonly SceneLoader _sceneLoader;
 		private readonly LoadingCurtain _curtaine;
@@ -74,10 +72,12 @@ namespace CodeBase.Infrastructure.States
 
 		private void InitGameWorld()
 		{
-			InitEnemySpawners();
+			LevelStaticData levelData = _staticData.ForLevel(SceneManager.GetActiveScene().name);
+			
+			InitEnemySpawners(levelData);
 			InitUnpickableLoot();
 			
-			GameObject knight = _factory.CreateKnight(GameObject.FindWithTag(InitialPointTag));
+			GameObject knight = _factory.CreateKnight(levelData.InitialPlayerPosition);
 			
 			GameObject hud = _factory.CreateHud();
 			hud.GetComponentInChildren<ActorUI>().Constructor(knight.GetComponent<KnightHealth>());
@@ -85,10 +85,8 @@ namespace CodeBase.Infrastructure.States
 			CameraFollow(knight);
 		}
 
-		private void InitEnemySpawners()
+		private void InitEnemySpawners(LevelStaticData levelData)
 		{
-			string sceneKey = SceneManager.GetActiveScene().name;
-			LevelStaticData levelData = _staticData.ForLevel(sceneKey);
 			foreach (EnemySpawnerData spawnerData in levelData.EnemySpawner)
 			{
 				_factory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyType);

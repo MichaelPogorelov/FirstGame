@@ -35,9 +35,9 @@ namespace CodeBase.Infrastructure.Factory
 			_windowService = windowService;
 		}
 
-		public GameObject CreateKnight(GameObject at)
+		public GameObject CreateKnight(Vector3 at)
 		{
-			_knightGameObject = InstantiateRegister(AssetPath.KnightPath, at.transform.position);
+			_knightGameObject = InstantiateRegister(AssetPath.KnightPath, at);
 			return _knightGameObject;
 		}
 
