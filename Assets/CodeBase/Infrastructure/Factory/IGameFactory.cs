@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Logic;
@@ -14,7 +15,7 @@ namespace CodeBase.Infrastructure.Factory
 		GameObject CreateKnight(Vector3 at);
 		GameObject CreateHud();
 		void Cleanup();
-		GameObject CreateEnemy(EnemyType type, Transform transform);
+		Task<GameObject> CreateEnemy(EnemyType type, Transform transform);
 		LootPiece CreateLoot(Vector3 position);
 		void CreateSpawner(Vector3 at, string id, EnemyType type);
 	}

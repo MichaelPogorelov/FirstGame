@@ -811,6 +811,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 9198435668289976108, guid: 274c4c35ed05ea14c87492064b3cadfd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 274c4c35ed05ea14c87492064b3cadfd, type: 3}
 --- !u!4 &5266719384161875456 stripped

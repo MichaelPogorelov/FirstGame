@@ -21,4 +21,6 @@ MonoBehaviour:
   MoveSpeed: 3
   MaxLoot: 5
   MinLoot: 1
-  Prefab: {fileID: 5238962767695915663, guid: 29ea02d69aded45869048c145a30df70, type: 3}
+  PrefabReference:
+    m_AssetGUID: 29ea02d69aded45869048c145a30df70
+    m_SubObjectName: 
