@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.PersistentProgress;
 using CodeBase.Infrastructure.Services.SaveLoad;
 using CodeBase.Loot;
+using CodeBase.Services.Ads;
 using CodeBase.Services.Input;
 using CodeBase.StaticData;
 using CodeBase.UI.Services;
@@ -44,12 +45,13 @@ namespace CodeBase.Infrastructure.States
 		private void RegisterServices()
 		{
 			RegisterStaticData();
+			RegisterAds();
 			
 			_services.RegisterSingle<IRandomService>(new UnityRandomService());
 			_services.RegisterSingle<IInputService>(ChooseInputService());
 			_services.RegisterSingle<IAssetProvider>(new AssetProvider());
 			_services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-			_services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>(), _services.Single<IStaticDataService>(), _services.Single<IPersistentProgressService>()));
+			_services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAssetProvider>(), _services.Single<IStaticDataService>(), _services.Single<IPersistentProgressService>(), _services.Single<IAdsService>()));
 			_services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
 			_services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAssetProvider>(), _services.Single<IStaticDataService>(), _services.Single<IRandomService>(), _services.Single<IPersistentProgressService>(), _services.Single<IWindowService>()));
 			_services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
@@ -60,6 +62,13 @@ namespace CodeBase.Infrastructure.States
 			IStaticDataService staticData = new StaticDataService();
 			staticData.LoadStaticData();
 			_services.RegisterSingle<IStaticDataService>(staticData);
+		}
+
+		private void RegisterAds()
+		{
+			var adsService = new AdsService();
+			adsService.Initialize();
+			_services.RegisterSingle<IAdsService>(adsService);
 		}
 
 		private static IInputService ChooseInputService()
