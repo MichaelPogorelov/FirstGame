@@ -57,7 +57,8 @@ namespace CodeBase.Infrastructure.Factory
 		public async Task<GameObject> CreateEnemy(EnemyType type, Transform parent)
 		{
 			EnemyStaticData enemyData = _staticData.ForEnemy(type);
-			GameObject prefab = await enemyData.PrefabReference.LoadAssetAsync().Task;
+
+			GameObject prefab = await _assets.Load<GameObject>(enemyData.PrefabReference);
 			
 			GameObject enemy = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
 			
@@ -104,6 +105,7 @@ namespace CodeBase.Infrastructure.Factory
 		{
 			ProgressReaders.Clear();
 			ProgressWriters.Clear();
+			_assets.Cleanup();
 		}
 
 		private GameObject InstantiateRegister(string prefabPath, Vector3 at)
