@@ -29,9 +29,9 @@ namespace CodeBase.Loot
 			_lootMax = max;
 		}
 
-		private void SpawnLoot()
+		private async void SpawnLoot()
 		{
-			LootPiece loot = _gameFactory.CreateLoot(transform.position);
+			LootPiece loot = await _gameFactory.CreateLoot(transform.position);
 			var lootItem = new LootData()
 			{
 				Value = _random.Next(_lootMin, _lootMax)

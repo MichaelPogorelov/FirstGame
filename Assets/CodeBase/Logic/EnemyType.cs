@@ -4,6 +4,7 @@ namespace CodeBase.Logic
 	{
 		Lich,
 		Golem,
+		Dragon,
 		Unknow,
 	}
 }

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.Data;
 using CodeBase.Enemy.Lich;
 using CodeBase.Infrastructure.Factory;
@@ -40,9 +41,9 @@ namespace CodeBase.Logic
 			}
 		}
 
-		private void Spawn()
+		private async void Spawn()
 		{
-			GameObject enemy = _gameFactory.CreateEnemy(EnemyType, transform);
+			GameObject enemy = await _gameFactory.CreateEnemy(EnemyType, transform);
 			_enemyDeath = enemy.GetComponent<EnemyDeath>();
 			_enemyDeath.DeathHappend += Slay;
 		}

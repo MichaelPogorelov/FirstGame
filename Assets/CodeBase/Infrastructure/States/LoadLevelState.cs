@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.CameraLogic;
 using CodeBase.Data;
 using CodeBase.Hero;
@@ -16,8 +17,6 @@ namespace CodeBase.Infrastructure.States
 {
 	public class LoadLevelState : IPayloadedState<string>
 	{
-		private const string InitialPointTag = "InitialPoint";
-		private const string EnemySpawnerTag = "EnemySpawner";
 		private readonly GameStateMachine _stateMachine;
 		private readonly SceneLoader _sceneLoader;
 		private readonly LoadingCurtain _curtaine;
@@ -42,6 +41,7 @@ namespace CodeBase.Infrastructure.States
 		{
 			_curtaine.Show();
 			_factory.Cleanup();
+			_factory.Warmup();
 			_sceneLoader.Load(sceneName, OnLoaded);
 		}
 
@@ -50,18 +50,18 @@ namespace CodeBase.Infrastructure.States
 			_curtaine.Hide();
 		}
 
-		private void OnLoaded()
+		private async void OnLoaded()
 		{
-			InitUIRoot();
-			InitGameWorld();
+			await InitUIRoot();
+			await InitGameWorld();
 			InformProgressReaders();
 
 			_stateMachine.Enter<GameLoopState>();
 		}
 
-		private void InitUIRoot()
+		private async Task InitUIRoot()
 		{
-			_uiFactory.CreateUIRoot();
+			await _uiFactory.CreateUIRoot();
 		}
 
 		private void InformProgressReaders()
@@ -72,34 +72,42 @@ namespace CodeBase.Infrastructure.States
 			}
 		}
 
-		private void InitGameWorld()
+		private async Task InitGameWorld()
 		{
-			InitEnemySpawners();
-			InitUnpickableLoot();
+			LevelStaticData levelData = _staticData.ForLevel(SceneManager.GetActiveScene().name);
 			
-			GameObject knight = _factory.CreateKnight(GameObject.FindWithTag(InitialPointTag));
-			
-			GameObject hud = _factory.CreateHud();
-			hud.GetComponentInChildren<ActorUI>().Constructor(knight.GetComponent<KnightHealth>());
-			
+			await InitEnemySpawners(levelData);
+			await InitUnpickableLoot();
+			GameObject knight = await InitKnight(levelData);
+			await InitHud(knight);
+
 			CameraFollow(knight);
 		}
 
-		private void InitEnemySpawners()
+		private async Task InitHud(GameObject knight)
 		{
-			string sceneKey = SceneManager.GetActiveScene().name;
-			LevelStaticData levelData = _staticData.ForLevel(sceneKey);
+			GameObject hud = await _factory.CreateHud();
+			hud.GetComponentInChildren<ActorUI>().Constructor(knight.GetComponent<KnightHealth>());
+		}
+
+		private async Task<GameObject> InitKnight(LevelStaticData levelData)
+		{
+			return await _factory.CreateKnight(levelData.InitialPlayerPosition);
+		}
+
+		private async Task InitEnemySpawners(LevelStaticData levelData)
+		{
 			foreach (EnemySpawnerData spawnerData in levelData.EnemySpawner)
 			{
-				_factory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyType);
+				await _factory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyType);
 			}
 		}
 
-		private void InitUnpickableLoot()
+		private async Task InitUnpickableLoot()
 		{
 			foreach (LootSavePositionData lootSavePosition in _progressService.Progress.LootSavePositionData)
 			{
-				LootPiece loot = _factory.CreateLoot(lootSavePosition.LootPosition);
+				LootPiece loot = await _factory.CreateLoot(lootSavePosition.LootPosition);
 				LootData lootData = new LootData() { Value = lootSavePosition.Value };
 				loot.Initialize(lootData);
 			}

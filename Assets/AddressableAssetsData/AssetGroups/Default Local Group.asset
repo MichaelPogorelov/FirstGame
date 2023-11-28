@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 74ac00bbdc77e473099bf14dc85b68d8
+  m_SerializeEntries:
+  - m_GUID: 181862a89f60d7a459002f9870860ad4
+    m_Address: hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 29ea02d69aded45869048c145a30df70
+    m_Address: LichMovingEnemy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 5238962767695915663, guid: 29ea02d69aded45869048c145a30df70,
+      type: 3}
+    m_TargetAsset: {fileID: 5238962767695915663, guid: 29ea02d69aded45869048c145a30df70,
+      type: 3}
+  - m_GUID: 3dc32503be00c465fa2adfc11bf5f545
+    m_Address: UIRoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 140660509473936652, guid: 3dc32503be00c465fa2adfc11bf5f545,
+      type: 3}
+    m_TargetAsset: {fileID: 140660509473936652, guid: 3dc32503be00c465fa2adfc11bf5f545,
+      type: 3}
+  - m_GUID: 8160cb2562c77459e9ed52f5791bd9dc
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: c09d884e7ca40460f91e5b20675d3e94
+    m_Address: IncrediblyFatDragon Variant
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 4490580572635992603, guid: c09d884e7ca40460f91e5b20675d3e94,
+      type: 3}
+    m_TargetAsset: {fileID: 4490580572635992603, guid: c09d884e7ca40460f91e5b20675d3e94,
+      type: 3}
+  - m_GUID: d587ba2fd38b20449986c007d26d2b8a
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: f6395af14c6ae2d4ea00c7e97e633ad3
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: fef8ee76ba818f84b81b11da6bda5ddf
+    m_Address: Golem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 5261016488348296696, guid: fef8ee76ba818f84b81b11da6bda5ddf,
+      type: 3}
+    m_TargetAsset: {fileID: 5261016488348296696, guid: fef8ee76ba818f84b81b11da6bda5ddf,
+      type: 3}
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e8cd296081d5443e690e9b75ca8a990a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: faf7b273cdb8f434e8a9e1e046347067, type: 2}
+    - {fileID: 11400000, guid: c647cab6f676e4bf3a759dd29897de20, type: 2}
