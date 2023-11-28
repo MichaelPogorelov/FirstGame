@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using CodeBase.CameraLogic;
 using CodeBase.Data;
 using CodeBase.Hero;
@@ -40,6 +41,7 @@ namespace CodeBase.Infrastructure.States
 		{
 			_curtaine.Show();
 			_factory.Cleanup();
+			_factory.Warmup();
 			_sceneLoader.Load(sceneName, OnLoaded);
 		}
 
@@ -48,10 +50,10 @@ namespace CodeBase.Infrastructure.States
 			_curtaine.Hide();
 		}
 
-		private void OnLoaded()
+		private async void OnLoaded()
 		{
 			InitUIRoot();
-			InitGameWorld();
+			await InitGameWorld();
 			InformProgressReaders();
 
 			_stateMachine.Enter<GameLoopState>();
@@ -70,12 +72,12 @@ namespace CodeBase.Infrastructure.States
 			}
 		}
 
-		private void InitGameWorld()
+		private async Task InitGameWorld()
 		{
 			LevelStaticData levelData = _staticData.ForLevel(SceneManager.GetActiveScene().name);
 			
-			InitEnemySpawners(levelData);
-			InitUnpickableLoot();
+			await InitEnemySpawners(levelData);
+			await InitUnpickableLoot();
 			
 			GameObject knight = _factory.CreateKnight(levelData.InitialPlayerPosition);
 			
@@ -85,19 +87,19 @@ namespace CodeBase.Infrastructure.States
 			CameraFollow(knight);
 		}
 
-		private void InitEnemySpawners(LevelStaticData levelData)
+		private async Task InitEnemySpawners(LevelStaticData levelData)
 		{
 			foreach (EnemySpawnerData spawnerData in levelData.EnemySpawner)
 			{
-				_factory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyType);
+				await _factory.CreateSpawner(spawnerData.Position, spawnerData.Id, spawnerData.EnemyType);
 			}
 		}
 
-		private void InitUnpickableLoot()
+		private async Task InitUnpickableLoot()
 		{
 			foreach (LootSavePositionData lootSavePosition in _progressService.Progress.LootSavePositionData)
 			{
-				LootPiece loot = _factory.CreateLoot(lootSavePosition.LootPosition);
+				LootPiece loot = await _factory.CreateLoot(lootSavePosition.LootPosition);
 				LootData lootData = new LootData() { Value = lootSavePosition.Value };
 				loot.Initialize(lootData);
 			}

@@ -16,7 +16,8 @@ namespace CodeBase.Infrastructure.Factory
 		GameObject CreateHud();
 		void Cleanup();
 		Task<GameObject> CreateEnemy(EnemyType type, Transform transform);
-		LootPiece CreateLoot(Vector3 position);
-		void CreateSpawner(Vector3 at, string id, EnemyType type);
+		Task<LootPiece> CreateLoot(Vector3 position);
+		Task CreateSpawner(Vector3 at, string id, EnemyType type);
+		Task Warmup();
 	}
 }

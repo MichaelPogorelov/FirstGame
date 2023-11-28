@@ -25,6 +25,12 @@ MonoBehaviour:
       type: 3}
     m_TargetAsset: {fileID: 5238962767695915663, guid: 29ea02d69aded45869048c145a30df70,
       type: 3}
+  - m_GUID: 8160cb2562c77459e9ed52f5791bd9dc
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: c09d884e7ca40460f91e5b20675d3e94
     m_Address: IncrediblyFatDragon Variant
     m_ReadOnly: 0
@@ -33,6 +39,12 @@ MonoBehaviour:
       type: 3}
     m_TargetAsset: {fileID: 4490580572635992603, guid: c09d884e7ca40460f91e5b20675d3e94,
       type: 3}
+  - m_GUID: d587ba2fd38b20449986c007d26d2b8a
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   - m_GUID: fef8ee76ba818f84b81b11da6bda5ddf
     m_Address: Golem
     m_ReadOnly: 0

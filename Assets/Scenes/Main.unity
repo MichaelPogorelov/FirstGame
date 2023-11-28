@@ -1677,6 +1677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnMarker
       objectReference: {fileID: 0}
+    - target: {fileID: 4690010547291097379, guid: 2d1ce98b8cd52458c83e88965cda157f,
+        type: 3}
+      propertyPath: EnemyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5522903611327253085, guid: 2d1ce98b8cd52458c83e88965cda157f,
         type: 3}
       propertyPath: m_LocalPosition.x

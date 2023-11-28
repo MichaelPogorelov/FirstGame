@@ -10,6 +10,12 @@ namespace CodeBase.Infrastructure.AssetManagement
 	{
 		private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new Dictionary<string, AsyncOperationHandle>();
 		private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new Dictionary<string, List<AsyncOperationHandle>>();
+
+		public void Initialize()
+		{
+			Addressables.InitializeAsync();
+		}
+		
 		public GameObject Instantiate(string path)
 		{
 			var prefab = Resources.Load<GameObject>(path);
@@ -38,6 +44,22 @@ namespace CodeBase.Infrastructure.AssetManagement
 			return await handle.Task;
 		}
 
+		public async Task<T> Load<T>(string assetPath) where T : class
+		{
+			if (_completedCache.TryGetValue(assetPath, out var completedHandle))
+			{
+				return completedHandle.Result as T;
+			}
+			
+			AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetPath);
+
+			handle.Completed += h => _completedCache[assetPath] = h;
+
+			AddHandle(assetPath, handle);
+
+			return await handle.Task;
+		}
+
 		public void Cleanup()
 		{
 			foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
@@ -47,6 +69,8 @@ namespace CodeBase.Infrastructure.AssetManagement
 					Addressables.Release(handle);
 				}
 			}
+			_completedCache.Clear();
+			_handles.Clear();
 		}
 
 		private void AddHandle<T>(string key, AsyncOperationHandle<T> handle) where T : class
