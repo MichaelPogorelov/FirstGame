@@ -13,10 +13,7 @@ namespace CodeBase.UI
 		{
 			_worldData = worldData;
 			_worldData.LootSaveData.Changed += UpdateCounter;
-		}
-
-		private void Start()
-		{
+			
 			UpdateCounter();
 		}
 

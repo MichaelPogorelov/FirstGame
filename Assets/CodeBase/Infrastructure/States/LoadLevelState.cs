@@ -52,16 +52,16 @@ namespace CodeBase.Infrastructure.States
 
 		private async void OnLoaded()
 		{
-			InitUIRoot();
+			await InitUIRoot();
 			await InitGameWorld();
 			InformProgressReaders();
 
 			_stateMachine.Enter<GameLoopState>();
 		}
 
-		private void InitUIRoot()
+		private async Task InitUIRoot()
 		{
-			_uiFactory.CreateUIRoot();
+			await _uiFactory.CreateUIRoot();
 		}
 
 		private void InformProgressReaders()
@@ -78,13 +78,21 @@ namespace CodeBase.Infrastructure.States
 			
 			await InitEnemySpawners(levelData);
 			await InitUnpickableLoot();
-			
-			GameObject knight = _factory.CreateKnight(levelData.InitialPlayerPosition);
-			
-			GameObject hud = _factory.CreateHud();
-			hud.GetComponentInChildren<ActorUI>().Constructor(knight.GetComponent<KnightHealth>());
-			
+			GameObject knight = await InitKnight(levelData);
+			await InitHud(knight);
+
 			CameraFollow(knight);
+		}
+
+		private async Task InitHud(GameObject knight)
+		{
+			GameObject hud = await _factory.CreateHud();
+			hud.GetComponentInChildren<ActorUI>().Constructor(knight.GetComponent<KnightHealth>());
+		}
+
+		private async Task<GameObject> InitKnight(LevelStaticData levelData)
+		{
+			return await _factory.CreateKnight(levelData.InitialPlayerPosition);
 		}
 
 		private async Task InitEnemySpawners(LevelStaticData levelData)

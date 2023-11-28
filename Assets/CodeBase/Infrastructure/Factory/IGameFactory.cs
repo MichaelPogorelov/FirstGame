@@ -12,8 +12,8 @@ namespace CodeBase.Infrastructure.Factory
 	{
 		List<ILoadProgress> ProgressReaders { get; }
 		List<ISaveProgress> ProgressWriters { get; }
-		GameObject CreateKnight(Vector3 at);
-		GameObject CreateHud();
+		Task<GameObject> CreateKnight(Vector3 at);
+		Task<GameObject> CreateHud();
 		void Cleanup();
 		Task<GameObject> CreateEnemy(EnemyType type, Transform transform);
 		Task<LootPiece> CreateLoot(Vector3 position);

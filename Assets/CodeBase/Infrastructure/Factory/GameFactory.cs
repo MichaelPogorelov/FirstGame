@@ -38,19 +38,19 @@ namespace CodeBase.Infrastructure.Factory
 
 		public async Task Warmup()
 		{
-			await _assets.Load<GameObject>(AssetAdress.LootPath);
+			await _assets.Load<GameObject>(AssetAdress.Loot);
 			await _assets.Load<GameObject>(AssetAdress.Spawner);
 		}
 
-		public GameObject CreateKnight(Vector3 at)
+		public async Task<GameObject> CreateKnight(Vector3 at)
 		{
-			_knightGameObject = InstantiateRegister(AssetAdress.KnightPath, at);
+			_knightGameObject = await InstantiateRegisterAsync(AssetAdress.Knight, at);
 			return _knightGameObject;
 		}
 
-		public GameObject CreateHud()
+		public async Task<GameObject> CreateHud()
 		{
-			GameObject hud = InstantiateRegister(AssetAdress.HudPath);
+			GameObject hud = await InstantiateRegisterAsync(AssetAdress.Hud);
 			hud.GetComponentInChildren<LootCounter>().Constructor(_progressService.Progress.WorldData);
 			foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
 			{
@@ -93,7 +93,7 @@ namespace CodeBase.Infrastructure.Factory
 
 		public async Task<LootPiece> CreateLoot(Vector3 position)
 		{
-			var prefab = await _assets.Load<GameObject>(AssetAdress.LootPath);
+			var prefab = await _assets.Load<GameObject>(AssetAdress.Loot);
 			
 			LootPiece lootPiece = InstantiateRegister(prefab, position).GetComponent<LootPiece>();
 			lootPiece.Constructor(_progressService.Progress.WorldData);
@@ -120,21 +120,21 @@ namespace CodeBase.Infrastructure.Factory
 		
 		private GameObject InstantiateRegister(GameObject prefab, Vector3 at)
 		{
-			GameObject gameObject = UnityEngine.Object.Instantiate(prefab, at, Quaternion.identity);
+			GameObject gameObject = Object.Instantiate(prefab, at, Quaternion.identity);
 			RegisterProgress(gameObject);
 			return gameObject;
 		}
 
-		private GameObject InstantiateRegister(string prefabPath, Vector3 at)
+		private async Task<GameObject> InstantiateRegisterAsync(string prefabPath, Vector3 at)
 		{
-			GameObject gameObject = _assets.Instantiate(prefabPath, at);
+			GameObject gameObject = await _assets.Instantiate(prefabPath, at);
 			RegisterProgress(gameObject);
 			return gameObject;
 		}
 
-		private GameObject InstantiateRegister(string prefabPath)
+		private async Task<GameObject> InstantiateRegisterAsync(string prefabPath)
 		{
-			GameObject gameObject = _assets.Instantiate(prefabPath);
+			GameObject gameObject = await _assets.Instantiate(prefabPath);
 			RegisterProgress(gameObject);
 			return gameObject;
 		}

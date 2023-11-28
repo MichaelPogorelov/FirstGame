@@ -16,16 +16,14 @@ namespace CodeBase.Infrastructure.AssetManagement
 			Addressables.InitializeAsync();
 		}
 		
-		public GameObject Instantiate(string path)
+		public Task<GameObject> Instantiate(string path)
 		{
-			var prefab = Resources.Load<GameObject>(path);
-			return Object.Instantiate(prefab);
+			return Addressables.InstantiateAsync(path).Task;
 		}
 
-		public GameObject Instantiate(string path, Vector3 at)
+		public Task<GameObject> Instantiate(string path, Vector3 at)
 		{
-			var prefab = Resources.Load<GameObject>(path);
-			return Object.Instantiate(prefab, at, Quaternion.identity);
+			return Addressables.InstantiateAsync(path, at, Quaternion.identity).Task;
 		}
 
 		public async Task<T> Load<T>(AssetReference assetReference) where T : class
