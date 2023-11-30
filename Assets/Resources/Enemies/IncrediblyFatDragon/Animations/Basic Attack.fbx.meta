@@ -447,14 +447,14 @@ ModelImporter:
       curves: []
       events:
       - time: 0.5168809
-        functionName: OnAttack
+        functionName: AnimationEventLichAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
       - time: 0.92845654
-        functionName: OnAttackEnded
+        functionName: AnimationEventLichFinishAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

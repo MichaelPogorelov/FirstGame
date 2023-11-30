@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GolemMoving
   m_EditorClassIdentifier: 
   EnemyType: 1
-  HP: 100
-  Damage: 40
+  HP: 80
+  Damage: 30
   AttackCooldown: 1
   HitRadius: 0.8
   ForwardDistanceCoef: 0.8

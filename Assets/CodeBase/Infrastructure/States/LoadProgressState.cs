@@ -35,7 +35,7 @@ namespace CodeBase.Infrastructure.States
 		private PlayerProgress NewProgress()
 		{
 			PlayerProgress playerProgress = new PlayerProgress("Main");
-			playerProgress.PlayerHealth.MaxHP = 50f;
+			playerProgress.PlayerHealth.MaxHP = 5000f;
 			playerProgress.PlayerHealth.ResetHP();
 			playerProgress.PlayerAttack.Damage = 50f;
 			playerProgress.PlayerAttack.RadiusAttack = 0.5f;

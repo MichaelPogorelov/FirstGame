@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: Dungeon
   EnemySpawner:
-  - Id: Dungeon_765a4190-e0fb-46eb-a144-d9e194a2be75
-    EnemyType: 0
-    Position: {x: -4.1, y: 0.0674777, z: -4.24}
   - Id: Dungeon_25354666-5cba-404d-a081-99d2c8ca95ca
-    EnemyType: 1
+    EnemyType: 0
     Position: {x: -4.1, y: 0.0674777, z: 2.31}
   - Id: Dungeon_7fe8375c-71cd-451e-96ca-1c88e5b9bed1
     EnemyType: 2
     Position: {x: -4.1, y: 0.0674777, z: 10.3}
+  - Id: Dungeon_765a4190-e0fb-46eb-a144-d9e194a2be75
+    EnemyType: 0
+    Position: {x: -4.1, y: 0.0674777, z: -4.24}
   InitialPlayerPosition: {x: -4.6, y: 0.26, z: -18.6}
