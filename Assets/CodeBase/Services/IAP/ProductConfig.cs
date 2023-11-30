@@ -7,7 +7,9 @@ namespace CodeBase.Services.IAP
 	public class ProductConfig
 	{
 		public string ID;
-		public ProductType Type;
+		public ProductType ProductType;
 		public int MaxPurchaseCount;
+		public ItemType ItemType;
+		public int Quantity;
 	}
 }

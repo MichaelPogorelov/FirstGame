@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CodeBase.Data;
 using UnityEngine;
 using UnityEngine.Purchasing;
@@ -11,19 +12,25 @@ namespace CodeBase.Services.IAP
 		public bool IsInitialize => _controller != null && _extensions != null;
 		public event Action Initialized;
 
-		private List<ProductConfig> _configs;
+		public Dictionary<string, ProductConfig> Configs { get; private set; }
+		public Dictionary<string, Product> Products { get; private set; }
 		private IStoreController _controller;
 		private IExtensionProvider _extensions;
 		private const string IAPConfigsPath = "IAP/products";
+		private IAPService _iapService;
 
-		public void Initialize()
+		public void Initialize(IAPService iapService)
 		{
+			_iapService = iapService;
+			Configs = new Dictionary<string, ProductConfig>();
+			Products = new Dictionary<string, Product>();
+			
 			ConfigurationBuilder builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 			Load();
 
-			foreach (ProductConfig productConfig in _configs)
+			foreach (ProductConfig productConfig in Configs.Values)
 			{
-				builder.AddProduct(productConfig.ID, productConfig.Type);
+				builder.AddProduct(productConfig.ID, productConfig.ProductType);
 			}
 
 			UnityPurchasing.Initialize(this, builder);
@@ -39,6 +46,11 @@ namespace CodeBase.Services.IAP
 			_controller = controller;
 			_extensions = extensions;
 
+			foreach (Product product in _controller.products.all)
+			{
+				Products.Add(product.definition.id, product);
+			}
+
 			Initialized?.Invoke();
 			
 			Debug.Log("UnityPurchasing initialized success");
@@ -53,7 +65,7 @@ namespace CodeBase.Services.IAP
 		{
 			Debug.Log($"Unity Purchasing success {purchaseEvent.purchasedProduct.definition.id}");
 
-			return PurchaseProcessingResult.Complete;
+			return _iapService.ProcessPurchase(purchaseEvent.purchasedProduct);
 		}
 
 		public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
@@ -63,7 +75,7 @@ namespace CodeBase.Services.IAP
 
 		private void Load()
 		{
-			_configs = Resources.Load<TextAsset>(IAPConfigsPath).text.ToDeserialized<ProductConfigWrapper>().Configs;
+			Configs = Resources.Load<TextAsset>(IAPConfigsPath).text.ToDeserialized<ProductConfigWrapper>().Configs.ToDictionary(x => x.ID, x => x);
 		}
 	}
 }

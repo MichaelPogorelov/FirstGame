@@ -10,6 +10,7 @@ namespace CodeBase.Data
 		public PlayerHealthData PlayerHealth;
 		public PlayerAttackData PlayerAttack;
 		public EnemyDeathData EnemyDeath;
+		public PurchaseProductData PurchaseProduct;
 		public List<LootSavePositionData> LootSavePositionData;
 
 		public PlayerProgress(string initialLevel)
@@ -18,6 +19,7 @@ namespace CodeBase.Data
 			PlayerHealth = new PlayerHealthData();
 			PlayerAttack = new PlayerAttackData();
 			EnemyDeath = new EnemyDeathData();
+			PurchaseProduct = new PurchaseProductData();
 			LootSavePositionData = new List<LootSavePositionData>();
 		}
 	}
